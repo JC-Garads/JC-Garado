@@ -130,25 +130,3 @@ export const skillSet = [
   'Reporting',
   'Data Validation',
 ]
-
-export const assistantGreeting = [
-  { id: 1, sender: 'assistant' as const, text: 'Hi! I can share John Carlo’s background and help you connect quickly.' },
-  { id: 2, sender: 'assistant' as const, text: 'What would you like to know?' },
-]
-
-export const quickPrompts = ['Tell me about your profile', 'How can I contact you?', 'What are your strengths?']
-
-export function getAssistantReply(text: string) {
-  const normalized = text.toLowerCase()
-
-  if (normalized.includes('email') || normalized.includes('contact')) {
-    return `You can reach John Carlo via email at ${profile.email} or through LinkedIn.`
-  }
-  if (normalized.includes('profile') || normalized.includes('experience') || normalized.includes('work')) {
-    return 'John Carlo is a Database Operations Analyst focused on production support, SQL validation, and incident resolution.'
-  }
-  if (normalized.includes('strength') || normalized.includes('skills')) {
-    return 'His core strengths include SQL, database monitoring, production support, incident triage, and operational process improvement.'
-  }
-  return 'John Carlo focuses on dependable production support, SQL validation, and improving system stability across business operations.'
-}

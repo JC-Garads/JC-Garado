@@ -1048,7 +1048,7 @@ h2 em {
   display: flex;
   flex-direction: column;
   width: min(380px, calc(100vw - 32px));
-  height: min(560px, calc(100vh - 120px));
+  height: min(620px, calc(100vh - 120px));
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -1089,7 +1089,9 @@ h2 em {
   height: 6px;
 }
 
-.assistant-header .icon-button {
+.assistant-header-actions {
+  display: flex;
+  gap: 6px;
   margin-left: auto;
 }
 
@@ -1101,6 +1103,49 @@ h2 em {
   padding: 18px;
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+.message-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message-group.assistant {
+  align-items: flex-start;
+}
+
+.message-group.user {
+  align-items: flex-end;
+}
+
+.message-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  animation: pop-in 0.3s var(--ease);
+}
+
+.message-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.message-action:hover {
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+.message-action svg {
+  width: 14px;
+  height: 14px;
 }
 
 .message {
@@ -1153,19 +1198,21 @@ h2 em {
 
 .quick-prompts {
   display: flex;
-  gap: 8px;
-  padding: 0 18px 12px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 18px;
+  border-top: 1px solid var(--border);
+  animation: pop-in 0.3s var(--ease);
 }
 
 .chip {
   flex: none;
-  padding: 7px 12px;
+  padding: 5px 11px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: transparent;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
   color: var(--muted);
   transition:
     color 0.2s,
@@ -1236,7 +1283,7 @@ h2 em {
   }
 
   .hero-portrait {
-    justify-self: start;
+    justify-self: center;
     max-width: 360px;
     order: -1;
   }

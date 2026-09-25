@@ -12,7 +12,8 @@ Run `npm run build` and `npm run lint` after every change; both must pass cleanl
 
 ## Structure
 
-- `src/data/portfolio.ts` — all content: profile, links, stats, projects, skills, themes, assistant replies. Edit copy here, not in components.
+- `src/data/portfolio.ts` — all content: profile, links, stats, projects, skills, themes. Edit copy here, not in components.
+- `src/data/assistant.ts` — the Assist chat's topics: keywords, rotating reply variants, follow-up suggestions and action links.
 - `src/components/` — `Header` (nav + theme switcher + mobile menu), `Sections` (Hero, About, Projects, Skills, Footer), `Contact`, `Assistant`, `PageLoader`, `icons`.
 - `src/hooks/usePortfolioEffects.ts` — theme tokens applied to `<html>`, scroll reveal, active-section nav, scrolled header.
 - `src/index.css` — base styles and design tokens. `src/App.css` — component styles.
@@ -22,7 +23,7 @@ Run `npm run build` and `npm run lint` after every change; both must pass cleanl
 - Page loader (~1.2s) before the site renders.
 - Five themes (Blue, Midnight, Sage, Forest, Sunset), saved to localStorage. Colors come from CSS variables (`--primary`, `--bg`, `--surface`, `--text`, `--muted`, `--border`); never hard-code colors in components.
 - Contact form: honeypot field, required fields, email format check, 20-character minimum message, opens a `mailto:` draft, then locks for 15 seconds.
-- Floating "Assist" chat: canned replies from `getAssistantReply`, quick prompts, thinking indicator.
+- Floating "Assist" chat: rule-based, no API. Keyword matching picks a topic, replies rotate between variants, and every answer offers follow-up suggestion chips so the conversation keeps going. Has action links, a thinking indicator, and a start-over button. Replies must only use facts from the site; for anything not on the site (location, salary, resume) point to email. A real AI chatbot (Claude API via a Vercel function, key in Vercel env vars) was discussed but postponed.
 
 ## Design rules
 
@@ -43,4 +44,6 @@ Run `npm run build` and `npm run lint` after every change; both must pass cleanl
 
 - Ask before large visual changes. The owner reviews the look and gives direct feedback.
 - To check visuals, run `npx vite preview` and take headless Chrome screenshots. Headless Chrome has a minimum window width, so test phone layouts inside a 390px-wide iframe served from the same origin.
+- Sections fade in via IntersectionObserver. Headless `--virtual-time-budget` screenshots of the live site can show them blank even though real browsers are fine; confirm by loading the page in real time (Chrome DevTools protocol) before treating blank sections as a bug.
 - Git remote: `https://github.com/JC-Garads/JC-Garado` (branch `main`). Commit author: John Carlo Garado <carlogarado24@gmail.com>. Only commit or push when asked.
+- Live site: https://jc-garado.vercel.app/ (Vercel, auto-deploys on every push to `main`).
